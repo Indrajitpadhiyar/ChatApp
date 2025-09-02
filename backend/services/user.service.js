@@ -17,3 +17,12 @@ export const createUser = async ({ email, password }) => {
   console.log("User created:", user);
   return user;
 };
+
+export const getAllUsers = async ({ userId }) => {
+  try {
+    const users = await User.find({ _id: { $ne: userId } });
+    return users;
+  } catch (error) {
+    throw new Error("Error fetching users");
+  }
+};
